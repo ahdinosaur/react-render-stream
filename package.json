@@ -1,0 +1,34 @@
+{
+  "name": "react-render-stream",
+  "version": "1.0.0",
+  "description": "React.render a stream of props to Component at element",
+  "main": "index.js",
+  "scripts": {
+    "test": "run-browser test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ahdinosaur/react-render-stream"
+  },
+  "keywords": [
+    "react",
+    "render",
+    "stream"
+  ],
+  "author": "ahdinosaur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahdinosaur/react-render-stream/issues"
+  },
+  "homepage": "https://github.com/ahdinosaur/react-render-stream",
+  "devDependencies": {
+    "run-browser": "^2.0.2",
+    "tape": "^4.0.0"
+  },
+  "dependencies": {
+    "global": "^4.3.0",
+    "r-dom": "^1.3.0",
+    "react": "^0.13.3",
+    "through2": "^2.0.0"
+  }
+}
