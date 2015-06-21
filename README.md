@@ -2,6 +2,8 @@
 
 React.render a stream of props to Component at element
 
+**stability**: experimental. expect the unexpected.
+
 ## install
 
 with [npm](http://npmjs.org), do:
