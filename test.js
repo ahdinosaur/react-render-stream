@@ -1,13 +1,15 @@
 var test = require('tape')
-var through = require('through2')
 var React = require('react')
 var r = require('r-dom')
+var PassThrough = require('readable-stream').PassThrough
 var document = require('global/document')
 
 var reactRenderStream = require('./')
 
 test('renders a stream', function (t) {
-  var input = through.obj()
+  var input = new PassThrough({
+    objectMode: true
+  })
 
   var el = document.createElement('div')
   document.body.appendChild(el)
@@ -23,12 +25,11 @@ test('renders a stream', function (t) {
     }),
     element: el
   }))
-  .pipe(through.obj(function (chunk, enc, cb) {
+
+  input.end({
+    name: 'Mikey'
+  }, function () {
     var text = el.querySelector('span').textContent
     t.equal(text, 'hi Mikey')
-  }))
-
-  input.write({
-    name: 'Mikey'
   })
 })

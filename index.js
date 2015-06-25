@@ -1,18 +1,29 @@
-var through = require('through2')
+var inherits = require('inherits')
+var Writable = require('readable-stream').Writable
 var React = require('react')
-var r = require('r-dom')
 
-module.exports = reactRenderStream
+module.exports = ReactRenderStream
 
-function reactRenderStream (opts) {
-  var Factory = React.createFactory(opts.Component)
-  var element = opts.element
+inherits(ReactRenderStream, Writable)
+function ReactRenderStream (opts) {
+  if (!(this instanceof ReactRenderStream)) {
+    return new ReactRenderStream(opts)
+  }
 
-  return through.obj(function (props, enc, cb) {
-    React.render(
-      Factory(props),
-      element
-    )
-    cb(null, props)
+  Writable.call(this, {
+    objectMode: true
   })
+
+  this.Component = opts.Component
+  this.Factory = React.createFactory(this.Component)
+  this.element = opts.element
+}
+
+ReactRenderStream.prototype._write = write
+
+function write (props) {
+  React.render(
+    this.Factory(props),
+    this.element
+  )
 }
