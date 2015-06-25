@@ -21,9 +21,10 @@ function ReactRenderStream (opts) {
 
 ReactRenderStream.prototype._write = write
 
-function write (props) {
+function write (props, enc, cb) {
   React.render(
     this.Factory(props),
-    this.element
+    this.element,
+    cb
   )
 }
