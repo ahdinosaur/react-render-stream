@@ -17,14 +17,14 @@ test('renders a stream', function (t) {
   t.plan(1)
   
   input
-  .pipe(reactRenderStream({
-    Component: React.createClass({
+  .pipe(reactRenderStream(
+    React.createClass({
       render: function () {
         return r.span("hi " + this.props.name)
       }
     }),
-    element: el
-  }))
+    el
+  ))
 
   input.end({
     name: 'Mikey'

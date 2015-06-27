@@ -6,18 +6,18 @@ var raf = require('raf')
 module.exports = ReactRenderStream
 
 inherits(ReactRenderStream, Writable)
-function ReactRenderStream (opts) {
+function ReactRenderStream (Component, element) {
   if (!(this instanceof ReactRenderStream)) {
-    return new ReactRenderStream(opts)
+    return new ReactRenderStream(Component, element)
   }
 
   Writable.call(this, {
     objectMode: true
   })
 
-  this.Component = opts.Component
-  this.Factory = React.createFactory(this.Component)
-  this.element = opts.element
+  this.Component = Component
+  this.Factory = React.createFactory(Component)
+  this.element = element
 }
 
 ReactRenderStream.prototype._write = write
