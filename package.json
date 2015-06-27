@@ -1,6 +1,6 @@
 {
   "name": "react-render-stream",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "React.render a stream of props to Component at element",
   "main": "index.js",
   "scripts": {
